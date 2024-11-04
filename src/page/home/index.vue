@@ -61,18 +61,28 @@ async function getDataApi() {
 async function getViewStyle() {
   const { data } = await $axios.get("/index/getDataApi");
   data.data = JSON.parse(data.data);
-  console.log(data.data);
-
-  list.value[0].data.imgList = data.data[0].carouselData.map((item) => {
-    return {
+  let imgText = [
+    {
+      zh: `<p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>晶诚生物</strong></span></p><p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125);">Synova. Biotech</span></p><p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>精心制造健康生活</strong></span></p><p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125);">Manufacturing Healthy Life</span></p><p style="text-indent: 2em; line-height: 2;"><br></p>`,
+      en: `<p><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>Synova. Biotech</strong></span></p><p><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>Manufacturing Healthy Life</strong></span></p>`,
+    },
+    {
+      zh: `<p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>专业酶法、发酵法及化学合成技术的氨基酸生产厂家</strong></span></p><p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 19px;"><strong>Amino acid manufacturer specializing in enzyme, fermentation and chemical synthesis technologies</strong></span></p><p style="text-indent: 2em; line-height: 1.15;"><br></p>`,
+      en: `<p><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>Amino acid manufacturer specializing in enzyme, fermentation and chemical synthesis technologies</strong></span></p>`,
+    },
+    {
+      zh: `<p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>立足于专业能力 专注于品质服务</strong></span></p><p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 19px;"><strong>Based on professional ability &nbsp;focus on quality service</strong></span></p><p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>不懈创新 不断发展</strong></span></p><p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 19px;"><strong>unremitting innovation &nbsp;continuous development</strong></span></p><p style="text-indent: 2em; line-height: 1.15;"><br></p>`,
+      en: `<p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 48px;"><strong>Based on professional ability, focus on quality service</strong></span></p><p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 48px;"><strong>unremitting innovation, continuous development</strong></span></p>`,
+    },
+  ];
+  list.value[0].data.imgList = data.data[0].carouselData.map((item, index) => {
+    let imgConfig = {
       url: item,
-      title: {
-        zh: "",
-        en: "",
-      },
+      title: imgText[index],
       align: "left",
       path: "/productItem?id=1",
     };
+    return imgConfig;
   });
 
   list.value[1].data.content.image.url = data.data[0].companyData.url;
