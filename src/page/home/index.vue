@@ -31,20 +31,33 @@ const consult = ref([]); //咨询中心
 async function getDataApi() {
   const { data } = await $axios.get("/index/getDataApi");
   let carousel = JSON.parse(data.data);
-  let chineseText = carousel[0].companyData.chineseText;
-  // 将文本按换行符拆分成数组
-  const chineseLines = chineseText.split("\n");
-  // 构建新的HTML
-  chineseText.value = chineseLines
-    .map((line) => `<p style="text-indent: 2em; line-height: 2;"><span style="color: rgb(0, 0, 0); font-size: 16px;">${line} </span></p>`)
-    .join("");
-  let EnglishText = carousel[0].companyData.EnglishText;
-  // 将文本按换行符拆分成数组
-  const EnglishLines = EnglishText.split("\n");
-  // 构建新的HTML
-  EnglishText.value = EnglishLines.map(
-    (line) => `<p style="text-indent: 2em; line-height: 2;"><span style="color: rgb(0, 0, 0); font-size: 16px;">${line} </span></p>`
-  ).join("");
+  //轮播图
+  carouselIndex1.value = carousel[0].carouselData[0];
+  carouselIndex2.value = carousel[0].carouselData[1];
+  carouselIndex3.value = carousel[0].carouselData[2];
+  //公司简介
+  if (carousel[0].companyData.chineseText1) {
+    let textC = carousel[0].companyData.chineseText1;
+    // 将文本按换行符拆分成数组
+    const chineseLines = textC.split("\n");
+    // 构建新的HTML
+    chineseText.value = chineseLines
+      .map((line) => `<p style="text-indent: 2em; line-height: 2;"><span style="color: rgb(0, 0, 0); font-size: 16px;">${line} </span></p>`)
+      .join("");
+  }
+  if (carousel[0].companyData.EnglishText1) {
+    let textE = carousel[0].companyData.EnglishText1;
+    // 将文本按换行符拆分成数组
+    const EnglishLines = textE.split("\n");
+    // 构建新的HTML
+    EnglishText.value = EnglishLines.map(
+      (line) => `<p style="text-indent: 2em; line-height: 2;"><span style="color: rgb(0, 0, 0); font-size: 16px;">${line} </span></p>`
+    ).join("");
+  }
+  companyUrl.value = carousel[0].companyData.url;
+
+  //荣誉资质
+
   // honor.value = data.honor;
   // consult.value = data.consult;
 }
