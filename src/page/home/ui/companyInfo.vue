@@ -44,6 +44,7 @@ const contentStyle = computed(() => ({
   fontWeight: data.value.content.textBox.weight,
   lineHeight: data.value.content.textBox.lineHeight,
   color: data.value.content.textBox.color,
+  whiteSpace:'break-spaces'
 }));
 
 const data = defineModel();

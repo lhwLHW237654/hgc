@@ -41,8 +41,8 @@ async function getDataApi() {
       .map((line) => `<p style="text-indent: 2em; line-height: 2;"><span style="color: rgb(0, 0, 0); font-size: 16px;">${line} </span></p>`)
       .join("");
   }
-  if (carousel[0].companyData.EnglishText1) {
-    let textE = carousel[0].companyData.EnglishText1;
+  if (carousel[0].companyData.englishText1) {
+    let textE = carousel[0].companyData.englishText1;
     // 将文本按换行符拆分成数组
     const EnglishLines = textE.split("\n");
     // 构建新的HTML
@@ -76,7 +76,7 @@ async function getViewStyle() {
   });
 
   list.value[1].data.content.image.url = data.data[0].companyData.url;
-  list.value[1].data.content.textBox.text.en = data.data[0].companyData.EnglishText1;
+  list.value[1].data.content.textBox.text.en = data.data[0].companyData.englishText1;
   list.value[1].data.content.textBox.text.zh = data.data[0].companyData.chineseText1;
 
   list.value[2].data.qualification = data.data[0].honorData.map((item) => {
