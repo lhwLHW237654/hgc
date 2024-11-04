@@ -178,8 +178,6 @@ onMounted(() => {
       zh: [...allListData.zh.list1, ...allListData.zh.list2, ...allListData.zh.list3, ...allListData.zh.list4, ...allListData.zh.list5],
       en: [...allListData.en.list1, ...allListData.en.list2, ...allListData.en.list3, ...allListData.en.list4, ...allListData.en.list5],
     };
-
-    console.log(allList[locale.value]);
     data.value.table[locale.value].data = allList[locale.value].filter((i) => i.name.indexOf(keyWord) != -1 || i.cas.indexOf(keyWord) != -1);
   }
 });
