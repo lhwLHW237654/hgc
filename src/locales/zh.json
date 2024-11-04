@@ -1,0 +1,72 @@
+{
+  "title": {
+    "text": "晶 诚 生 物",
+    "subtext": "Synova. Biotech",
+    "name": "安徽晶诚生物科技有限公司"
+  },
+  "htmlTitle": "安徽晶诚生物科技有限公司",
+  "companyInfoTitle": "公司简介",
+  "productTitle": "产品中心",
+  "productItem": {
+    "btn": "查看更多"
+  },
+  "videoBox": {
+    "title": "视频介绍"
+  },
+  "honorsBox": {
+    "title": "荣誉资质",
+    "honorsTitle": "极具影响力的优质品牌"
+  },
+  "productBox": {
+    "select": {
+      "placeholder": "请输入产品名称",
+      "search": "搜索产品"
+    }
+  },
+  "newsBox": {
+    "title": "资讯中心",
+    "industry": "行业资讯"
+  },
+  "menu": {
+    "home": "首页",
+    "aboutus": "关于我们",
+    "product": "产品中心",
+    "news": "资讯中心",
+    "jobs": "招贤纳士",
+    "QE": "质量中心",
+    "contactus": "联系我们",
+    "recruitment": "招贤纳士"
+  },
+  "about": {
+    "timeline": {
+      "title": "发展历程"
+    },
+    "culture": {
+      "title": "企业文化"
+    },
+    "honor": {
+      "title": "荣誉资质"
+    },
+    "pictureBox": {
+      "title": "企业风貌"
+    },
+    "productionBase": {
+      "title": "生产基地"
+    }
+  },
+  "footBox": {
+    "address": "地　址：安徽省淮北市新型煤化工合成材料基地淮中北路6号",
+    "name": "联系人：王金荣",
+    "phone": "电　话：18626329813",
+    "email": "邮　箱：jc{'@'}synova.com.cn",
+    "copyright": "版权所有：安徽晶诚生物科技有限公司 备案号：皖ICP备2022003642号",
+    "map": "帮助链接"
+  },
+  "recruitment": {
+    "number": "招聘人数"
+  },
+  "product": {
+    "searchResult": "搜索结果"
+  },
+  "companyInfoBtn": "查看全部"
+}

@@ -1,0 +1,72 @@
+{
+  "title": {
+    "text": "Synova",
+    "subtext": "Lean has no end Innovation has no end",
+    "name": "Synova Biotech Co., Ltd. "
+  },
+  "htmlTitle": "Synova Biotech Co., Ltd.",
+  "companyInfoTitle": "ABOUT US",
+  "productTitle": "Products",
+  "productItem": {
+    "btn": "View More"
+  },
+  "videoBox": {
+    "title": "Video"
+  },
+  "honorsBox": {
+    "title": "Honors",
+    "honorsTitle": "Very influential"
+  },
+  "productBox": {
+    "select": {
+      "placeholder": "Please Enter The Product Name",
+      "search": "Search Product"
+    }
+  },
+  "newsBox": {
+    "title": "Company News",
+    "industry": "Industry News"
+  },
+  "menu": {
+    "home": "Home",
+    "aboutus": "About Us",
+    "product": "Product",
+    "news": "News",
+    "jobs": "Jobs",
+    "contactus": "Contact Us",
+    "QE": "Quality&EHS",
+    "recruitment": "Recruitment"
+  },
+  "about": {
+    "timeline": {
+      "title": "Our History"
+    },
+    "culture": {
+      "title": "Enterprise Culture"
+    },
+    "honor": {
+      "title": "Honors and Credentials"
+    },
+    "pictureBox": {
+      "title": "Factory Picture"
+    },
+    "productionBase": {
+      "title": "Production Base"
+    }
+  },
+  "footBox": {
+    "copyright": "Copyright: Synova Biotech Co., Ltd. Registration number: Anhui ICP No. 2022003642",
+    "address": "Address: No. 6, Huaizhong North Road, New Coal Chemical Synthetic Materials Base, Huaibei City, Anhui Province",
+    "name": "Contact person: Wang Jinrong",
+    "phone": "Phone: 18626329813",
+    "email": "Email: jc{'@'}synova.com.cn",
+    "map": "Help Link"
+  },
+  "recruitment": {
+    "number": "Number of people"
+  },
+  "product": {
+    "searchResult": "Search results"
+  },
+  "companyInfoBtn": "Show More"
+}
