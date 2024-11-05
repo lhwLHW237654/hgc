@@ -15,52 +15,12 @@ onMounted(() => {
   getViewStyle();
 });
 
-const carouselIndex1 = ref(""); //轮播图1
-const carouselIndex2 = ref(""); //轮播图2
-const carouselIndex3 = ref(""); //轮播图3
-const companyUrl = ref(""); //公司图片
-const chineseText = ref(""); //公司介绍中文
-const EnglishText = ref(""); //公司介绍英文
-const honor = ref([]); //荣誉资质
-const consult = ref([]); //咨询中心
-
-async function getDataApi() {
-  const { data } = await $axios.get("/index/getDataApi");
-  let carousel = JSON.parse(data.data);
-  //轮播图
-  carouselIndex1.value = carousel[0].carouselData[0];
-  carouselIndex2.value = carousel[0].carouselData[1];
-  carouselIndex3.value = carousel[0].carouselData[2];
-  //公司简介
-  if (carousel[0].companyData.chineseText1) {
-    let textC = carousel[0].companyData.chineseText1;
-    // 将文本按换行符拆分成数组
-    const chineseLines = textC.split("\n");
-    // 构建新的HTML
-    chineseText.value = chineseLines
-      .map((line) => `<p style="text-indent: 2em; line-height: 2;"><span style="color: rgb(0, 0, 0); font-size: 16px;">${line} </span></p>`)
-      .join("");
-  }
-  if (carousel[0].companyData.englishText1) {
-    let textE = carousel[0].companyData.englishText1;
-    // 将文本按换行符拆分成数组
-    const EnglishLines = textE.split("\n");
-    // 构建新的HTML
-    EnglishText.value = EnglishLines.map(
-      (line) => `<p style="text-indent: 2em; line-height: 2;"><span style="color: rgb(0, 0, 0); font-size: 16px;">${line} </span></p>`
-    ).join("");
-  }
-  companyUrl.value = carousel[0].companyData.url;
-
-  //荣誉资质
-
-  // honor.value = data.honor;
-  // consult.value = data.consult;
-}
-
 async function getViewStyle() {
   const { data } = await $axios.get("/index/getDataApi");
-  data.data = JSON.parse(data.data);
+  let carouselData = JSON.parse(data.carousel);
+  let companyData = JSON.parse(data.company);
+  let honorData = JSON.parse(data.honor);
+  let consultData = JSON.parse(data.consult);
   let imgText = [
     {
       zh: `<p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>晶诚生物</strong></span></p><p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125);">Synova. Biotech</span></p><p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>精心制造健康生活</strong></span></p><p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125);">Manufacturing Healthy Life</span></p><p style="text-indent: 2em; line-height: 2;"><br></p>`,
@@ -75,7 +35,7 @@ async function getViewStyle() {
       en: `<p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 48px;"><strong>Based on professional ability, focus on quality service</strong></span></p><p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 48px;"><strong>unremitting innovation, continuous development</strong></span></p>`,
     },
   ];
-  list.value[0].data.imgList = data.data[0].carouselData.map((item, index) => {
+  list.value[0].data.imgList = carouselData.map((item, index) => {
     let imgConfig = {
       url: item,
       title: imgText[index],
@@ -85,11 +45,11 @@ async function getViewStyle() {
     return imgConfig;
   });
 
-  list.value[1].data.content.image.url = data.data[0].companyData.url;
-  list.value[1].data.content.textBox.text.en = data.data[0].companyData.englishText1;
-  list.value[1].data.content.textBox.text.zh = data.data[0].companyData.chineseText1;
+  list.value[1].data.content.image.url = companyData.url;
+  list.value[1].data.content.textBox.text.en = companyData.englishText1;
+  list.value[1].data.content.textBox.text.zh = companyData.chineseText1;
 
-  list.value[2].data.qualification = data.data[0].honorData.map((item) => {
+  list.value[2].data.qualification = honorData.map((item) => {
     return {
       url: item.url,
       background: "#fff",
@@ -111,7 +71,7 @@ async function getViewStyle() {
     };
   });
 
-  list.value[3].data.newsList = data.data[0].consultData.map((item) => {
+  list.value[3].data.newsList = consultData.map((item) => {
     return {
       title: {
         zh: item.titleZH,
@@ -171,33 +131,6 @@ const list = ref([
         pauseOnHover: true, //鼠标悬浮时暂停自动切换
         motionBlur: true, //是否开启切换时的动画模糊效果
       },
-      imgList: [
-        {
-          url: "https://files.catbox.moe/n1hk2m.jpg",
-          title: {
-            zh: `<p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>晶诚生物</strong></span></p><p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125);">Synova. Biotech</span></p><p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>精心制造健康生活</strong></span></p><p style="text-indent: 2em; line-height: 1.15;"><span style="color: rgb(0, 49, 125);">Manufacturing Healthy Life</span></p><p style="text-indent: 2em; line-height: 2;"><br></p>`,
-            en: `<p><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>Synova. Biotech</strong></span></p><p><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>Manufacturing Healthy Life</strong></span></p>`,
-          },
-          align: "left",
-          path: "/productItem?id=1",
-        },
-        {
-          url: "https://files.catbox.moe/s1bqw5.jpg",
-          title: {
-            zh: `<p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>专业酶法、发酵法及化学合成技术的氨基酸生产厂家</strong></span></p><p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 19px;"><strong>Amino acid manufacturer specializing in enzyme, fermentation and chemical synthesis technologies</strong></span></p><p style="text-indent: 2em; line-height: 1.15;"><br></p>`,
-            en: `<p><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>Amino acid manufacturer specializing in enzyme, fermentation and chemical synthesis technologies</strong></span></p>`,
-          },
-          path: "/productItem?id=1",
-        },
-        {
-          url: "https://files.catbox.moe/a7zo9m.png",
-          title: {
-            zh: `<p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>立足于专业能力 专注于品质服务</strong></span></p><p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 19px;"><strong>Based on professional ability &nbsp;focus on quality service</strong></span></p><p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 64px;"><strong>不懈创新 不断发展</strong></span></p><p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 19px;"><strong>unremitting innovation &nbsp;continuous development</strong></span></p><p style="text-indent: 2em; line-height: 1.15;"><br></p>`,
-            en: `<p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 48px;"><strong>Based on professional ability, focus on quality service</strong></span></p><p style="text-indent: 2em; text-align: center; line-height: 1.15;"><span style="color: rgb(0, 49, 125); font-size: 48px;"><strong>unremitting innovation, continuous development</strong></span></p>`,
-          },
-          path: "/productItem?id=1",
-        },
-      ],
       animation: {
         classes: "fadeInDown",
         delay: 0,
@@ -297,166 +230,6 @@ const list = ref([
       ],
     },
   },
-  // {
-  //   component: "productBox",
-  //   height: "auto",
-  //   padding: {
-  //     top: "100px",
-  //     bottom: "100px",
-  //     left: "200px",
-  //     right: "200px",
-  //   },
-  //   background: "https://www.delixi-electric.com/r/cms/delixi/newdelixi/images/bg01.jpg",
-  //   data: {
-  //     animation: {
-  //       classes: "fadeInDown",
-  //       delay: 0,
-  //       duration: 1000,
-  //       iteration: 0,
-  //     },
-  //     title: {
-  //       size: "36px",
-  //       weight: 800,
-  //       titleBottom: "50px",
-  //     },
-  //     productList: [
-  //       {
-  //         id: 1,
-  //         title: {
-  //           zh: "L/DL/D-氨基酸",
-  //           en: "L/DL/D-Amino Acids",
-  //         },
-  //         path: "/productItem?id=1",
-  //         url: "https://files.catbox.moe/fuy81t.jpg",
-  //         background: "#fff",
-  //         paddingTop: "50px",
-  //         animation: {
-  //           classes: "fadeIn",
-  //           delay: 0,
-  //           duration: 1000,
-  //           iteration: 0,
-  //         },
-  //       },
-  //       {
-  //         id: 2,
-  //         title: {
-  //           zh: "氨基酸酯/酰胺",
-  //           en: "Amino Acid Esters/Amides",
-  //         },
-  //         path: "/productItem?id=2",
-  //         url: "https://files.catbox.moe/c80k64.jpg",
-  //         background: "#fff",
-  //         paddingTop: "50px",
-  //         animation: {
-  //           classes: "fadeIn",
-  //           delay: 0,
-  //           duration: 1000,
-  //           iteration: 0,
-  //         },
-  //       },
-  //       {
-  //         id: 3,
-  //         title: {
-  //           zh: "氨基酸盐/复合盐",
-  //           en: "Amino Acid Salts/Complex Salts",
-  //         },
-  //         path: "/productItem?id=3",
-  //         url: "https://files.catbox.moe/slh8nj.jpg",
-  //         background: "#fff",
-  //         paddingTop: "50px",
-  //         animation: {
-  //           classes: "fadeIn",
-  //           delay: 0,
-  //           duration: 1000,
-  //           iteration: 0,
-  //         },
-  //       },
-  //       {
-  //         id: 4,
-  //         title: {
-  //           zh: "衍生物/保护氨基酸",
-  //           en: "Derivatives/Protected Amino Acids",
-  //         },
-  //         path: "/productItem?id=4",
-  //         url: "https://files.catbox.moe/pizlvh.jpeg",
-  //         background: "#fff",
-  //         paddingTop: "50px",
-  //         animation: {
-  //           classes: "fadeIn",
-  //           delay: 0,
-  //           duration: 1000,
-  //           iteration: 0,
-  //         },
-  //       },
-  //       {
-  //         id: 5,
-  //         title: {
-  //           zh: "其他",
-  //           en: "productName4",
-  //         },
-  //         path: "/productItem?id=4",
-  //         url: "https://files.catbox.moe/9w2l7k.png",
-  //         background: "#fff",
-  //         paddingTop: "50px",
-  //         animation: {
-  //           classes: "fadeIn",
-  //           delay: 0,
-  //           duration: 1000,
-  //           iteration: 0,
-  //         },
-  //         id: 5,
-  //       },
-  //     ],
-  //   },
-  // },
-  // {
-  //  component: "videoBox",
-  //  height: "auto",
-  //  padding: {
-  //   top: "100px",
-  //   bottom: "100px",
-  //   left: "200px",
-  //   right: "200px",
-  //  },
-  //  background: "#FFFFFF",
-  //  data: {
-  //   animation: {
-  //    classes: "fadeInDown",
-  //    delay: 0,
-  //    duration: 1000,
-  //    iteration: 0,
-  //   },
-  //   title: {
-  //    size: "36px",
-  //    weight: 800,
-  //    titleBottom: "50px",
-  //    animation: {
-  //     classes: "fadeIn",
-  //     delay: 0,
-  //     duration: 1000,
-  //     iteration: 0,
-  //    },
-  //   },
-  //   options: {
-  //    width: "1200px", //播放器高度
-  //    height: "auto", //播放器高度
-  //    color: "#409eff", //主题色
-  //    title: "", //视频名称
-  //    src: "https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/IronMan.mp4", //视频源
-  //    poster: "https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/ironMan.jpg", //视频封面
-  //    muted: false, //静音
-  //    webFullScreen: false,
-  //    speedRate: ["0.75", "1.0", "1.25", "1.5", "2.0"], //播放倍速
-  //    autoPlay: false, //自动播放
-  //    loop: false, //循环播放
-  //    mirror: false, //镜像画面
-  //    ligthOff: false, //关灯模式
-  //    volume: 0.3, //默认音量大小
-  //    control: true, //是否显示控制
-  //    controlBtns: ["audioTrack", "quality", "speedRate", "volume", "setting", "pip", "pageFullScreen", "fullScreen"], //显示所有按钮,
-  //   },
-  //  },
-  // },
   {
     component: "honorsBox",
     height: "auto",
