@@ -15,6 +15,43 @@ import culture from "./components/culture.vue";
 import honorBox from "./components/honorBox.vue";
 import pictureBox from "./components/pictureBox.vue";
 
+onMounted(() => {
+  getViewStyle();
+});
+
+async function getViewStyle() {
+  const { data } = await $axios.get("/index/getDataApi");
+  let companyData = JSON.parse(data.company);
+  let honorData = JSON.parse(data.honor);
+
+  //公司简介
+  info.value.image.url = companyData.url;
+  info.value.text.en = companyData.englishText;
+  info.value.text.zh = companyData.chineseText;
+
+  //荣誉资质
+  // list.value[2].data.qualification = honorData.map((item) => {
+  //   return {
+  //     url: item.url,
+  //     background: "#fff",
+  //     fontStyle: {
+  //       size: "16px",
+  //       weight: 400,
+  //       margin: "20px",
+  //       text: {
+  //         zh: item.titleZH,
+  //         en: item.titleEN,
+  //       },
+  //     },
+  //     animation: {
+  //       classes: "fadeIn",
+  //       delay: 0,
+  //       duration: 1000,
+  //       iteration: 0,
+  //     },
+  //   };
+  // });
+}
 const info = ref({
   background: "https://files.catbox.moe/ffubxy.png",
   image: {
