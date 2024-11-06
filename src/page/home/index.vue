@@ -37,7 +37,7 @@ async function getViewStyle() {
   ];
   list.value[0].data.imgList = carouselData.map((item, index) => {
     let imgConfig = {
-      url: item,
+      url: item.url,
       title: imgText[index],
       align: "left",
       path: "/productItem?id=1",
@@ -46,8 +46,8 @@ async function getViewStyle() {
   });
 
   list.value[1].data.content.image.url = companyData.url;
-  list.value[1].data.content.textBox.text.en = companyData.englishText1;
-  list.value[1].data.content.textBox.text.zh = companyData.chineseText1;
+  list.value[1].data.content.textBox.text.en = companyData.englishText;
+  list.value[1].data.content.textBox.text.zh = companyData.chineseText;
 
   list.value[2].data.qualification = honorData.map((item) => {
     return {
