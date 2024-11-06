@@ -38,7 +38,7 @@ async function getViewStyle() {
   list.value[0].data.imgList = carouselData.map((item, index) => {
     let imgConfig = {
       url: item.url,
-      title: imgText[index],
+      title: imgText[index] || '',
       align: "left",
       path: "/productItem?id=1",
     };
