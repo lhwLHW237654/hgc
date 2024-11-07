@@ -23,11 +23,23 @@ async function getViewStyle() {
   const { data } = await $axios.get("/index/getDataApi");
   let companyData = JSON.parse(data.company);
   let honorData = JSON.parse(data.honor);
-
+  let courseData = JSON.parse(data.course);
+  let baseData = JSON.parse(data.base);
   //公司简介
   info.value.image.url = companyData.url;
   info.value.text.en = companyData.englishText;
   info.value.text.zh = companyData.chineseText;
+
+  //发展历程
+  timeData.value = courseData;
+
+  //生产基地
+  productionBaseData.value.text.zh = baseData.chineseText;
+  productionBaseData.value.text.en = baseData.englishText;
+  let url = baseData.url.map((item) => {
+    return item.url;
+  });
+  productionBaseData.value.imageList = url;
 
   //荣誉资质
   // list.value[2].data.qualification = honorData.map((item) => {
@@ -119,70 +131,13 @@ const info = ref({
 
 const productionBaseData = ref({
   text: {
-    zh: "安徽晶诚生物科技有限公司目前拥有两个主要生产基地，其位于安徽省淮北市，两个生产基地间隔50多千米，共有3个发酵车间和6条精制生产线，通过采用先进的生产技术和工艺，努力实现生产过程的绿色化；并设有先进设备的标准化实验室，包括菌种优化设备、产品高效分离设备、高效液相色谱和气相色谱等精密检测仪器，确保我们的产品满足CP/USP/EP/AJI等多种质量标准。",
-    en: "Anhui Synova Biotech Co., Ltd. currently has two main production bases, located in Huaibei City, Anhui Province. The two production bases are more than 50 kilometers apart, with a total of 3 fermentation workshops and 6 refining production lines. By adopting advanced production technology and processes, we strive to achieve the greening of the production process; and have a standardized laboratory with advanced equipment, including strain optimization equipment, product efficient separation equipment, high-performance liquid chromatography and gas chromatography and other precision testing instruments, to ensure that our products meet CP/USP/EP/AJI and other quality standards.",
+    zh: "",
+    en: "",
   },
-  imageList: ["https://files.catbox.moe/d3k82b.png", "https://files.catbox.moe/cm7r4u.jpg"],
+  imageList: [],
 });
 
-const timeData = ref([
-  {
-    id: 1,
-    time: 953404800000, // 2000-03-15
-    sub: {
-      zh: "公司成立，初步建立了生产基地，并成功开发了第一代高效催化剂，",
-      en: "The company was established, the production base was initially established, and the first generation of efficient catalysts was successfully developed,",
-    },
-  },
-  {
-    id: 2,
-    time: 1058880000000, // 2003-07-22
-    sub: {
-      zh: "公司首次对外扩展，通过与国外化工企业的合作，引进了先进的生产技术和管理经验，显著提高了产品的国际市场竞争力。此举标志着公司开始进入快速发展阶段。",
-      en: "For the first time, the company expanded internationally through cooperation with foreign chemical companies, introducing advanced production technology and management experience, significantly enhancing the international competitiveness of its products. This marked the beginning of the company's rapid development phase.",
-    },
-  },
-  {
-    id: 3,
-    time: 1196390400000, // 2007-11-30
-    sub: {
-      zh: "公司重视环保责任，开发了一系列环保型化工产品，并成功应用于多个领域，如新能源、水处理等，这些创新产品有效减少了生产过程中的污染物排放，提升了公司在行业内的环保形象。",
-      en: "The company emphasized its environmental responsibility by developing a series of eco-friendly chemical products successfully applied in various fields, such as new energy and water treatment. These innovative products effectively reduced pollutant emissions during production, enhancing the company's environmental image within the industry.",
-    },
-  },
-  {
-    id: 4,
-    time: 1337145600000, // 2012-05-16
-    sub: {
-      zh: "公司通过多年的技术积累和市场拓展，成功上市，募集的资金进一步用于研发和扩大生产规模。上市后，公司加大了对外合作力度，与多家顶尖科研机构建立了长期合作关系。为公司后续的发展奠定了技术基础。这一时期，公司主要专注于研发，力求在化工领域内实现技术突破。",
-      en: "Through years of technological accumulation and market expansion, the company successfully went public, with the funds raised further used for R&D and production scale expansion. After listing, the company intensified its external cooperation, establishing long-term relationships with top scientific research institutions, laying a technical foundation for its subsequent development. During this period, the company focused primarily on R&D, striving for technological breakthroughs in the chemical industry.",
-    },
-  },
-  {
-    id: 5,
-    time: 1473302400000, // 2016-09-08
-    sub: {
-      zh: "公司在安全生产方面取得显著成就，成功开发了一系列安全生产技术和管理体系，大幅降低了生产事故率，为公司的持续健康发展提供了坚实保障。",
-      en: "The company made significant achievements in production safety, successfully developing a series of safety production technologies and management systems, substantially reducing the rate of production accidents, providing a solid guarantee for the company's continuous and healthy development.",
-    },
-  },
-  {
-    id: 6,
-    time: 1587360000000, // 2020-04-20
-    sub: {
-      zh: "面对全球气候变化的挑战，公司积极响应，推出了碳中和战略，通过技术创新和生产过程优化，实现了生产活动的低碳化，赢得了国内外市场的广泛认可。",
-      en: "In response to the challenge of global climate change, the company actively launched a carbon neutrality strategy. Through technological innovation and optimization of production processes, it achieved the decarbonization of its production activities, winning wide recognition in domestic and international markets.",
-    },
-  },
-  {
-    id: 7,
-    time: 1702819200000, // 2024-01-15
-    sub: {
-      zh: "公司庆祝成立24周年，回顾过去的成就，展望未来的发展。目前，公司已经成为国内外知名的化工企业，产品远销海外多个国家和地区，公司致力于成为全球化工行业的领导者。",
-      en: "The company celebrates its 24th anniversary, reflecting on past achievements and looking forward to future development. Currently, the company has become a well-known chemical enterprise both domestically and internationally, with products exported to many countries and regions overseas. The company is committed to becoming a leader in the global chemical industry.",
-    },
-  },
-]);
+const timeData = ref([]);
 
 const cultureList = ref([
   {
