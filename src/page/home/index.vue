@@ -72,7 +72,6 @@ async function getViewStyle() {
   });
 
   list.value[3].data.newsList = consultData.map((item) => {
-    console.log("%c Line:75 🥚 item", "background:#ea7e5c", item);
     return {
       title: {
         zh: item.titleZH,
