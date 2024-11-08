@@ -62,40 +62,17 @@ async function getViewStyle() {
     url: item.url,
   }));
 
-  //企业文化
-  // cultureList.value = cultureData.map((item)=>{
-  //   title: {
-  //     zh: item.titleZH,
-  //     en: item.titleEN,
-  //   },
-  //   sub: {
-  //     zh: item.contentZH,
-  //     en: item.contentEN,
-  //   },
-  // })
-
-  //荣誉资质
-  // list.value[2].data.qualification = honorData.map((item) => {
-  //   return {
-  //     url: item.url,
-  //     background: "#fff",
-  //     fontStyle: {
-  //       size: "16px",
-  //       weight: 400,
-  //       margin: "20px",
-  //       text: {
-  //         zh: item.titleZH,
-  //         en: item.titleEN,
-  //       },
-  //     },
-  //     animation: {
-  //       classes: "fadeIn",
-  //       delay: 0,
-  //       duration: 1000,
-  //       iteration: 0,
-  //     },
-  //   };
-  // });
+  cultureList.value = cultureData.map((item) => ({
+    title: {
+      zh: item.titleZH,
+      en: item.titleEN,
+    },
+    sub: {
+      zh: item.contentZH,
+      en: item.contentEN,
+    },
+    url: item.url,
+  }));
 }
 const info = ref({
   background: "https://files.catbox.moe/ffubxy.png",
@@ -172,74 +149,7 @@ const productionBaseData = ref({
 
 const timeData = ref([]);
 
-const cultureList = ref([
-  {
-    title: {
-      zh: "企业愿景",
-      en: "Enterprise Vision",
-    },
-    sub: {
-      zh: "成为全球领先的健康产品解决方案提供商，通过不断的技术革新和工艺改进，推动整个行业向更高的环保和可持续发展标准迈进",
-      en: "To become a global leader in health product solutions, driving the entire industry to higher environmental and sustainable development standards through continuous technological innovation and process improvement",
-    },
-    url: "https://innolcon.com/cp/html/images/1666247456.png",
-  },
-  {
-    title: {
-      zh: "企业使命",
-      en: "Enterprise Mission",
-    },
-    sub: {
-      zh: "利用先进的技术和创新工艺，生产高品质的健康产品，帮助客户提高效率和竞争力，同时减少对环境的影响，为实现可持续发展做出贡献",
-      en: "To produce high-quality health products using advanced technology and innovative processes, helping customers improve efficiency and competitiveness while reducing environmental impact and contributing to sustainable development",
-    },
-    url: "https://cdn.pixabay.com/photo/2017/06/04/20/48/vision-2372177_1280.jpg",
-  },
-  {
-    title: {
-      zh: "企业价值观",
-      en: "Enterprise Vision",
-    },
-    sub: {
-      zh: "创新、质量、环保、合作、责任",
-      en: "Innovation, Quality, Environmental Protection, Cooperation, Responsibility",
-    },
-    url: "https://cdn.pixabay.com/photo/2021/10/25/08/55/nature-6740243_640.jpg",
-  },
-  {
-    title: {
-      zh: "企业精神",
-      en: "Enterprise Vision",
-    },
-    sub: {
-      zh: "发展生物技术，共创健康未来",
-      en: "Developing biotechnology to create a healthy future together.",
-    },
-    url: "https://cdn.pixabay.com/photo/2014/10/05/06/16/windrader-474576_640.jpg",
-  },
-  {
-    title: {
-      zh: "企业宗旨",
-      en: "Enterprise Vision",
-    },
-    sub: {
-      zh: "为社会创造价值、推动行业进步、实现共赢",
-      en: "Creating value for society, promoting industry progress, and achieving win-win results",
-    },
-    url: "https://cdn.pixabay.com/photo/2020/03/16/14/58/family-4937226_640.jpg",
-  },
-  {
-    title: {
-      zh: "企业环保理念",
-      en: "Enterprise Vision",
-    },
-    sub: {
-      zh: "可持续生产、绿色创新、社会责任",
-      en: "Sustainable production, green innovation, social responsibility",
-    },
-    url: "https://files.catbox.moe/bbsg7u.jpg",
-  },
-]);
+const cultureList = ref([]);
 
 const honorList = ref([]);
 
