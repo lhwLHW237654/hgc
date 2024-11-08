@@ -25,6 +25,8 @@ async function getViewStyle() {
   let honorData = JSON.parse(data.honor);
   let courseData = JSON.parse(data.course);
   let baseData = JSON.parse(data.base);
+  let cultureData = JSON.parse(data.culture);
+  console.log("%c Line:29 🌶 cultureData", "background:#e41a6a", cultureData);
   //公司简介
   info.value.image.url = companyData.url;
   info.value.text.en = companyData.englishText;
@@ -40,6 +42,18 @@ async function getViewStyle() {
     return item.url;
   });
   productionBaseData.value.imageList = url;
+
+  //企业文化
+  // cultureList.value = cultureData.map((item)=>{
+  //   title: {
+  //     zh: item.titleZH,
+  //     en: item.titleEN,
+  //   },
+  //   sub: {
+  //     zh: item.contentZH,
+  //     en: item.contentEN,
+  //   },
+  // })
 
   //荣誉资质
   // list.value[2].data.qualification = honorData.map((item) => {
