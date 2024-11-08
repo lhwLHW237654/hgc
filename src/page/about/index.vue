@@ -26,7 +26,7 @@ async function getViewStyle() {
   let courseData = JSON.parse(data.course);
   let baseData = JSON.parse(data.base);
   let cultureData = JSON.parse(data.culture);
-  console.log("%c Line:29 🌶 cultureData", "background:#e41a6a", cultureData);
+  let styleData = JSON.parse(data.style);
   //公司简介
   info.value.image.url = companyData.url;
   info.value.text.en = companyData.englishText;
@@ -42,6 +42,15 @@ async function getViewStyle() {
     return item.url;
   });
   productionBaseData.value.imageList = url;
+
+  //企业风貌
+  pictureList.value = styleData.map((item) => ({
+    title: {
+      zh: item.titleZH,
+      en: item.titleEN,
+    },
+    url: item.url,
+  }));
 
   //企业文化
   // cultureList.value = cultureData.map((item)=>{
@@ -288,118 +297,7 @@ const honorList = ref([
   },
 ]);
 
-const pictureList = ref([
-  //=====
-  {
-    title: {
-      zh: "工厂风貌",
-      en: "Corporate Style",
-    },
-    url: "https://files.catbox.moe/2yjgu2.jpg",
-  },
-  {
-    title: {
-      zh: "工厂风貌",
-      en: "Corporate Style",
-    },
-    url: "https://files.catbox.moe/99alhk.jpg",
-  },
-  {
-    title: {
-      zh: "工厂风貌",
-      en: "Corporate Style",
-    },
-    url: "https://files.catbox.moe/zv4obk.jpg",
-  },
-  {
-    title: {
-      zh: "工厂风貌",
-      en: "Corporate Style",
-    },
-    url: "https://files.catbox.moe/krj8yt.jpg",
-  },
-  {
-    title: {
-      zh: "工厂风貌",
-      en: "Corporate Style",
-    },
-    url: "https://files.catbox.moe/gjbhpw.jpg",
-  },
-  {
-    title: {
-      zh: "工厂风貌",
-      en: "Corporate Style",
-    },
-    url: "https://files.catbox.moe/7ywxm6.jpg",
-  },
-  //=====
-  {
-    title: {
-      zh: "办公区域",
-      en: "Gate",
-    },
-    url: "https://files.catbox.moe/kmy7x6.jpg",
-  },
-  //====
-  {
-    title: {
-      zh: "实验室",
-      en: "Laboratory",
-    },
-    url: "https://files.catbox.moe/sucaou.jpg",
-  },
-  {
-    title: {
-      zh: "实验室",
-      en: "Laboratory",
-    },
-    url: "https://files.catbox.moe/hv8ini.jpg",
-  },
-  {
-    title: {
-      zh: "实验室",
-      en: "Laboratory",
-    },
-    url: "https://files.catbox.moe/tx8d9z.jpg",
-  },
-  //========
-  {
-    title: {
-      zh: "生产车间",
-      en: "Gate",
-    },
-    url: "https://files.catbox.moe/ajqt1p.jpg",
-  },
-  {
-    title: {
-      zh: "生产车间",
-      en: "Corporate Style",
-    },
-    url: "https://files.catbox.moe/wkyma3.jpg",
-  },
-  {
-    title: {
-      zh: "生产车间",
-      en: "Corporate Style",
-    },
-    url: "https://files.catbox.moe/kyfoqr.jpg",
-  },
-  //====
-  {
-    title: {
-      zh: "仓库",
-      en: "Warehouse",
-    },
-    url: "https://files.catbox.moe/zgi9u7.jpg",
-  },
-  {
-    title: {
-      zh: "仓库",
-      en: "Warehouse",
-    },
-    url: "https://files.catbox.moe/chjjpy.jpg",
-  },
-]);
+const pictureList = ref([]);
 </script>
 
 <style lang="scss" scoped>

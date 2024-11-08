@@ -82,7 +82,7 @@ async function getViewStyle() {
         en: item.contentEN,
       },
       url: item.url,
-      time: 1725934998005,
+      time: item.time,
     };
   });
 }
