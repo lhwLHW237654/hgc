@@ -72,6 +72,7 @@ async function getViewStyle() {
   });
 
   list.value[3].data.newsList = consultData.map((item) => {
+    console.log("%c Line:75 🥚 item", "background:#ea7e5c", item);
     return {
       title: {
         zh: item.titleZH,
@@ -392,12 +393,6 @@ const list = ref([
           },
           url: "https://files.catbox.moe/2qnpix.jpg",
           time: 1725934998005,
-          animation: {
-            classes: "fadeIn",
-            delay: 0,
-            duration: 1000,
-            iteration: 0,
-          },
         },
         {
           title: {

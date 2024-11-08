@@ -27,6 +27,7 @@ async function getViewStyle() {
   let baseData = JSON.parse(data.base);
   let cultureData = JSON.parse(data.culture);
   let styleData = JSON.parse(data.style);
+
   //公司简介
   info.value.image.url = companyData.url;
   info.value.text.en = companyData.englishText;
@@ -45,6 +46,15 @@ async function getViewStyle() {
 
   //企业风貌
   pictureList.value = styleData.map((item) => ({
+    title: {
+      zh: item.titleZH,
+      en: item.titleEN,
+    },
+    url: item.url,
+  }));
+
+  //荣誉资质
+  honorList.value = honorData.map((item) => ({
     title: {
       zh: item.titleZH,
       en: item.titleEN,
@@ -231,71 +241,7 @@ const cultureList = ref([
   },
 ]);
 
-const honorList = ref([
-  {
-    title: {
-      zh: "ISO9001 证书",
-      en: "ISO9001 Certificate",
-    },
-    url: "https://files.catbox.moe/fl4mfw.jpg",
-  },
-  {
-    title: {
-      zh: "KOSHER 证书",
-      en: "KOSHER Certificate",
-    },
-    url: "https://files.catbox.moe/27x5vz.png",
-  },
-  {
-    title: {
-      zh: "KOSHER 证书",
-      en: "KOSHER Certificate",
-    },
-    url: "https://files.catbox.moe/ginxwp.png",
-  },
-  {
-    title: {
-      zh: "KOSHER 证书",
-      en: "KOSHER Certificate",
-    },
-    url: "https://files.catbox.moe/8obfr2.png",
-  },
-  {
-    title: {
-      zh: "KOSHER 证书",
-      en: "KOSHER Certificate",
-    },
-    url: "https://files.catbox.moe/nqexvc.png",
-  },
-  {
-    title: {
-      zh: "KOSHER 证书",
-      en: "KOSHER Certificate",
-    },
-    url: "https://files.catbox.moe/ul2eb0.png",
-  },
-  {
-    title: {
-      zh: "KOSHER 证书",
-      en: "KOSHER Certificate",
-    },
-    url: "https://files.catbox.moe/q7bgm5.png",
-  },
-  {
-    title: {
-      zh: "HALAL 证书",
-      en: "HALAL Certificate",
-    },
-    url: "https://files.catbox.moe/chxa80.png",
-  },
-  {
-    title: {
-      zh: "HALAL 证书",
-      en: "HALAL Certificate",
-    },
-    url: "https://files.catbox.moe/pi9e2h.png",
-  },
-]);
+const honorList = ref([]);
 
 const pictureList = ref([]);
 </script>
